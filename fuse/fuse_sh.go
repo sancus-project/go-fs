@@ -87,3 +87,6 @@ func Subtype(fstype string) fuse.MountOption {
 func WritebackCache() fuse.MountOption {
 	return fuse.WritebackCache()
 }
+
+// MountOption is a proxy to the standard fuse.MountOption type
+type MountOption = fuse.MountOption

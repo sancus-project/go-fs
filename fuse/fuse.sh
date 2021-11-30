@@ -65,6 +65,22 @@ for n in \
 	generate fuse $(echo "$n" | tr ':' ' ')
 done
 
+generate_types() {
+	local pkg="$1" n=
+	shift
+
+	for n; do
+		cat <<EOT
+
+// $n is a proxy to the standard $pkg.$n type
+type $n = $pkg.$n
+EOT
+	done
+
+}
+
+generate_types fuse \
+	MountOption
 
 # format
 gofmt -w -l -s "$F~"
