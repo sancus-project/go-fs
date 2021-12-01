@@ -22,14 +22,28 @@ generate_alias() {
 	local t="$1" pkg="$2" n=
 	shift 2
 
-	for n; do
+	if [ $# -gt 1 ]; then
 		cat <<EOT
 
-// $n is a proxy to the standard $pkg.$n ${t#*:}
+${t#*:} (
+EOT
+		for n; do
+			cat <<EOT
+	// $n is an alias of the standard $pkg.$n ${t#*:}
+	$n = $pkg.$n
+EOT
+		done
+		cat <<EOT
+)
+EOT
+	elif [ $# -eq 1 ]; then
+		n="$1"
+		cat <<EOT
+
+// $n is an alias of the standard $pkg.$n ${t#*:}
 ${t%:*} $n = $pkg.$n
 EOT
-	done
-
+	fi
 }
 
 generate_const() {
