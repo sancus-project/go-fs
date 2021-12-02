@@ -31,6 +31,17 @@ func (fsys *Filesystem) Close() error {
 	return nil
 }
 
+func (fsys *Filesystem) Reload() error {
+	var err error
+
+	if m, ok := fsys.store.(interface{ Reload() error }); ok {
+		err = m.Reload()
+	}
+
+	// TODO: invalidate cache
+	return err
+}
+
 func New(store fs.FS, dir string, options ...fuse.MountOption) (*Filesystem, error) {
 	conn, err := fuse.Mount(dir, options...)
 	if err != nil {
