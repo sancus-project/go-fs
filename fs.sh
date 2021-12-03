@@ -29,7 +29,7 @@ EOT
 		for n; do
 			cat <<EOT
 	// $n is an alias of the standard $pkg.$n ${t#*:}
-	$n = $pkg.$n
+	$n = ${pkg##*/}.$n
 EOT
 		done
 		cat <<EOT
@@ -53,7 +53,7 @@ generate_types() {
 	generate_alias type "$@"
 }
 
-generate_types fs \
+generate_types io/fs \
 	PathError \
 	FS \
 	File \

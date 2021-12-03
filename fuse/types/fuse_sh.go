@@ -9,11 +9,11 @@ import (
 	"bazil.org/fuse/fs"
 )
 
-// Attr is an alias of the standard fuse.Attr type
+// Attr is an alias of the standard bazil.org/fuse.Attr type
 type Attr = fuse.Attr
 
-// Node is an alias of the standard fs.Node type
+// Node is an alias of the standard bazil.org/fuse/fs.Node type
 type Node = fs.Node
 
-// ENOSYS is an alias of the standard fuse.ENOSYS constant
+// ENOSYS is an alias of the standard bazil.org/fuse.ENOSYS constant
 const ENOSYS = fuse.ENOSYS

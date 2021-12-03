@@ -30,7 +30,7 @@ EOT
 		for n; do
 			cat <<EOT
 	// $n is an alias of the standard $pkg.$n ${t#*:}
-	$n = $pkg.$n
+	$n = ${pkg##*/}.$n
 EOT
 		done
 		cat <<EOT
@@ -41,7 +41,7 @@ EOT
 		cat <<EOT
 
 // $n is an alias of the standard $pkg.$n ${t#*:}
-${t%:*} $n = $pkg.$n
+${t%:*} $n = ${pkg##*/}.$n
 EOT
 	fi
 }
@@ -54,13 +54,13 @@ generate_types() {
 	generate_alias type "$@"
 }
 
-generate_types fuse \
+generate_types bazil.org/fuse \
 	Attr
 
-generate_types fs \
+generate_types bazil.org/fuse/fs \
 	Node
 
-generate_const fuse \
+generate_const bazil.org/fuse \
 	ENOSYS
 
 if ! diff -u "$F" "$F~" >&2; then

@@ -9,30 +9,30 @@ import (
 )
 
 type (
-	// PathError is an alias of the standard fs.PathError type
+	// PathError is an alias of the standard io/fs.PathError type
 	PathError = fs.PathError
-	// FS is an alias of the standard fs.FS type
+	// FS is an alias of the standard io/fs.FS type
 	FS = fs.FS
-	// File is an alias of the standard fs.File type
+	// File is an alias of the standard io/fs.File type
 	File = fs.File
-	// FileInfo is an alias of the standard fs.FileInfo type
+	// FileInfo is an alias of the standard io/fs.FileInfo type
 	FileInfo = fs.FileInfo
-	// FileMode is an alias of the standard fs.FileMode type
+	// FileMode is an alias of the standard io/fs.FileMode type
 	FileMode = fs.FileMode
-	// DirEntry is an alias of the standard fs.DirEntry type
+	// DirEntry is an alias of the standard io/fs.DirEntry type
 	DirEntry = fs.DirEntry
-	// GlobFS is an alias of the standard fs.GlobFS type
+	// GlobFS is an alias of the standard io/fs.GlobFS type
 	GlobFS = fs.GlobFS
-	// StatFS is an alias of the standard fs.StatFS type
+	// StatFS is an alias of the standard io/fs.StatFS type
 	StatFS = fs.StatFS
-	// SubFS is an alias of the standard fs.SubFS type
+	// SubFS is an alias of the standard io/fs.SubFS type
 	SubFS = fs.SubFS
-	// ReadDirFS is an alias of the standard fs.ReadDirFS type
+	// ReadDirFS is an alias of the standard io/fs.ReadDirFS type
 	ReadDirFS = fs.ReadDirFS
-	// ReadDirFile is an alias of the standard fs.ReadDirFile type
+	// ReadDirFile is an alias of the standard io/fs.ReadDirFile type
 	ReadDirFile = fs.ReadDirFile
-	// ReadFileFS is an alias of the standard fs.ReadFileFS type
+	// ReadFileFS is an alias of the standard io/fs.ReadFileFS type
 	ReadFileFS = fs.ReadFileFS
-	// WalkDirFunc is an alias of the standard fs.WalkDirFunc type
+	// WalkDirFunc is an alias of the standard io/fs.WalkDirFunc type
 	WalkDirFunc = fs.WalkDirFunc
 )
