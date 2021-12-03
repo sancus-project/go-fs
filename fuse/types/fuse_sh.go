@@ -14,6 +14,3 @@ type Attr = fuse.Attr
 
 // Node is an alias of the standard bazil.org/fuse/fs.Node type
 type Node = fs.Node
-
-// ENOSYS is an alias of the standard bazil.org/fuse.ENOSYS constant
-const ENOSYS = fuse.ENOSYS
