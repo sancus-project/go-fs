@@ -11,10 +11,10 @@ import (
 )
 
 const (
-	// ENOENT is a wrapped alias of the standard syscall.ENOENT constant
+	// ENOENT is a wrapped alias of the syscall.ENOENT constant
 	ENOENT = fuse.Errno(syscall.ENOENT)
-	// ENOSYS is a wrapped alias of the standard syscall.ENOSYS constant
+	// ENOSYS is a wrapped alias of the syscall.ENOSYS constant
 	ENOSYS = fuse.Errno(syscall.ENOSYS)
-	// ENOTDIR is a wrapped alias of the standard syscall.ENOTDIR constant
+	// ENOTDIR is a wrapped alias of the syscall.ENOTDIR constant
 	ENOTDIR = fuse.Errno(syscall.ENOTDIR)
 )

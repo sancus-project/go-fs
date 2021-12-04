@@ -9,8 +9,8 @@ import (
 	"bazil.org/fuse/fs"
 )
 
-// Attr is an alias of the standard bazil.org/fuse.Attr type
+// Attr is an alias of the bazil.org/fuse.Attr type
 type Attr = fuse.Attr
 
-// Node is an alias of the standard bazil.org/fuse/fs.Node type
+// Node is an alias of the bazil.org/fuse/fs.Node type
 type Node = fs.Node
