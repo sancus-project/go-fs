@@ -36,3 +36,43 @@ type (
 	// WalkDirFunc is an alias of the io/fs.WalkDirFunc type
 	WalkDirFunc = fs.WalkDirFunc
 )
+
+// ValidPath is a proxy function to io/fs.ValidPath()
+func ValidPath(name string) bool {
+	return fs.ValidPath(name)
+}
+
+// Glob is a proxy function to io/fs.Glob()
+func Glob(fsys fs.FS, pattern string) ([]string, error) {
+	return fs.Glob(fsys, pattern)
+}
+
+// ReadFile is a proxy function to io/fs.ReadFile()
+func ReadFile(fsys fs.FS, name string) ([]byte, error) {
+	return fs.ReadFile(fsys, name)
+}
+
+// ReadDir is a proxy function to io/fs.ReadDir()
+func ReadDir(fsys fs.FS, name string) ([]fs.DirEntry, error) {
+	return fs.ReadDir(fsys, name)
+}
+
+// Stat is a proxy function to io/fs.Stat()
+func Stat(fsys fs.FS, name string) (fs.FileInfo, error) {
+	return fs.Stat(fsys, name)
+}
+
+// Sub is a proxy function to io/fs.Sub()
+func Sub(fsys fs.FS, dir string) (fs.FS, error) {
+	return fs.Sub(fsys, dir)
+}
+
+// FileInfoToDirEntry is a proxy function to io/fs.FileInfoToDirEntry()
+func FileInfoToDirEntry(info fs.FileInfo) DirEntry {
+	return fs.FileInfoToDirEntry(info)
+}
+
+// WalkDir is a proxy function to io/fs.WalkDir()
+func WalkDir(fsys fs.FS, root string, fn WalkDirFunc) error {
+	return fs.WalkDir(fsys, root, fn)
+}
