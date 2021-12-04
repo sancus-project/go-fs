@@ -9,70 +9,91 @@ import (
 )
 
 type (
-	// PathError is an alias of the io/fs.PathError type
+	// PathError is an alias of the io/fs.PathError type,
+	// see https://pkg.go.dev/io/fs#PathError for details.
 	PathError = fs.PathError
-	// FS is an alias of the io/fs.FS type
+	// FS is an alias of the io/fs.FS type,
+	// see https://pkg.go.dev/io/fs#FS for details.
 	FS = fs.FS
-	// File is an alias of the io/fs.File type
+	// File is an alias of the io/fs.File type,
+	// see https://pkg.go.dev/io/fs#File for details.
 	File = fs.File
-	// FileInfo is an alias of the io/fs.FileInfo type
+	// FileInfo is an alias of the io/fs.FileInfo type,
+	// see https://pkg.go.dev/io/fs#FileInfo for details.
 	FileInfo = fs.FileInfo
-	// FileMode is an alias of the io/fs.FileMode type
+	// FileMode is an alias of the io/fs.FileMode type,
+	// see https://pkg.go.dev/io/fs#FileMode for details.
 	FileMode = fs.FileMode
-	// DirEntry is an alias of the io/fs.DirEntry type
+	// DirEntry is an alias of the io/fs.DirEntry type,
+	// see https://pkg.go.dev/io/fs#DirEntry for details.
 	DirEntry = fs.DirEntry
-	// GlobFS is an alias of the io/fs.GlobFS type
+	// GlobFS is an alias of the io/fs.GlobFS type,
+	// see https://pkg.go.dev/io/fs#GlobFS for details.
 	GlobFS = fs.GlobFS
-	// StatFS is an alias of the io/fs.StatFS type
+	// StatFS is an alias of the io/fs.StatFS type,
+	// see https://pkg.go.dev/io/fs#StatFS for details.
 	StatFS = fs.StatFS
-	// SubFS is an alias of the io/fs.SubFS type
+	// SubFS is an alias of the io/fs.SubFS type,
+	// see https://pkg.go.dev/io/fs#SubFS for details.
 	SubFS = fs.SubFS
-	// ReadDirFS is an alias of the io/fs.ReadDirFS type
+	// ReadDirFS is an alias of the io/fs.ReadDirFS type,
+	// see https://pkg.go.dev/io/fs#ReadDirFS for details.
 	ReadDirFS = fs.ReadDirFS
-	// ReadDirFile is an alias of the io/fs.ReadDirFile type
+	// ReadDirFile is an alias of the io/fs.ReadDirFile type,
+	// see https://pkg.go.dev/io/fs#ReadDirFile for details.
 	ReadDirFile = fs.ReadDirFile
-	// ReadFileFS is an alias of the io/fs.ReadFileFS type
+	// ReadFileFS is an alias of the io/fs.ReadFileFS type,
+	// see https://pkg.go.dev/io/fs#ReadFileFS for details.
 	ReadFileFS = fs.ReadFileFS
-	// WalkDirFunc is an alias of the io/fs.WalkDirFunc type
+	// WalkDirFunc is an alias of the io/fs.WalkDirFunc type,
+	// see https://pkg.go.dev/io/fs#WalkDirFunc for details.
 	WalkDirFunc = fs.WalkDirFunc
 )
 
-// ValidPath is a proxy function to io/fs.ValidPath()
+// ValidPath is a proxy function to io/fs.ValidPath(),
+// see https://pkg.go.dev/io/fs#ValidPath for details.
 func ValidPath(name string) bool {
 	return fs.ValidPath(name)
 }
 
-// Glob is a proxy function to io/fs.Glob()
+// Glob is a proxy function to io/fs.Glob(),
+// see https://pkg.go.dev/io/fs#Glob for details.
 func Glob(fsys fs.FS, pattern string) ([]string, error) {
 	return fs.Glob(fsys, pattern)
 }
 
-// ReadFile is a proxy function to io/fs.ReadFile()
+// ReadFile is a proxy function to io/fs.ReadFile(),
+// see https://pkg.go.dev/io/fs#ReadFile for details.
 func ReadFile(fsys fs.FS, name string) ([]byte, error) {
 	return fs.ReadFile(fsys, name)
 }
 
-// ReadDir is a proxy function to io/fs.ReadDir()
+// ReadDir is a proxy function to io/fs.ReadDir(),
+// see https://pkg.go.dev/io/fs#ReadDir for details.
 func ReadDir(fsys fs.FS, name string) ([]fs.DirEntry, error) {
 	return fs.ReadDir(fsys, name)
 }
 
-// Stat is a proxy function to io/fs.Stat()
+// Stat is a proxy function to io/fs.Stat(),
+// see https://pkg.go.dev/io/fs#Stat for details.
 func Stat(fsys fs.FS, name string) (fs.FileInfo, error) {
 	return fs.Stat(fsys, name)
 }
 
-// Sub is a proxy function to io/fs.Sub()
+// Sub is a proxy function to io/fs.Sub(),
+// see https://pkg.go.dev/io/fs#Sub for details.
 func Sub(fsys fs.FS, dir string) (fs.FS, error) {
 	return fs.Sub(fsys, dir)
 }
 
-// FileInfoToDirEntry is a proxy function to io/fs.FileInfoToDirEntry()
+// FileInfoToDirEntry is a proxy function to io/fs.FileInfoToDirEntry(),
+// see https://pkg.go.dev/io/fs#FileInfoToDirEntry for details.
 func FileInfoToDirEntry(info fs.FileInfo) DirEntry {
 	return fs.FileInfoToDirEntry(info)
 }
 
-// WalkDir is a proxy function to io/fs.WalkDir()
+// WalkDir is a proxy function to io/fs.WalkDir(),
+// see https://pkg.go.dev/io/fs#WalkDir for details.
 func WalkDir(fsys fs.FS, root string, fn WalkDirFunc) error {
 	return fs.WalkDir(fsys, root, fn)
 }

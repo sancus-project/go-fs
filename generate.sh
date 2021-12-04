@@ -24,7 +24,8 @@ ${t#*:} (
 EOT
 		for n; do
 			cat <<EOT
-	// $n is an alias of the $pkg.$n ${t#*:}
+	// $n is an alias of the $pkg.$n ${t#*:},
+	// see https://pkg.go.dev/$pkg#$n for details.
 	$n = ${pkg##*/}.$n
 EOT
 		done
@@ -35,7 +36,8 @@ EOT
 		n="$1"
 		cat <<EOT
 
-// $n is an alias of the $pkg.$n ${t#*:}
+// $n is an alias of the $pkg.$n ${t#*:},
+// see https://pkg.go.dev/$pkg#$n for details.
 ${t%:*} $n = ${pkg##*/}.$n
 EOT
 	fi
@@ -60,7 +62,8 @@ ${t%:*} (
 EOT
 		for n; do
 			cat <<EOT
-	// $n is a wrapped alias of the $pkg.$n ${t#*:}
+	// $n is a wrapped alias of the $pkg.$n ${t#*:},
+	// see https://pkg.go.dev/$pkg#$n for details.
 	$n = $f(${pkg##*/}.$n)
 EOT
 		done
@@ -71,7 +74,8 @@ EOT
 		n="$1"
 		cat <<EOT
 
-// $n is a wrapped alias of the $pkg.$n ${t#*:}
+// $n is a wrapped alias of the $pkg.$n ${t#*:},
+// see https://pkg.go.dev/$pkg#$n for details.
 ${t%:*} $n = $f(${pkg##*/}.$n)
 EOT
 	fi
@@ -106,7 +110,8 @@ generate__proxy() {
 	fi
 	cat <<EOT
 
-// $fn is a proxy function to $pkg.$fn()
+// $fn is a proxy function to $pkg.$fn(),
+// see https://pkg.go.dev/$pkg#$fn for details.
 func $fn($args)${rets:+ $rets} {
 	return ${pkg##*/}.$fn($params)
 }

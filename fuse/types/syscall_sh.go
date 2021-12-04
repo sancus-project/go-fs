@@ -11,10 +11,13 @@ import (
 )
 
 const (
-	// ENOENT is a wrapped alias of the syscall.ENOENT constant
+	// ENOENT is a wrapped alias of the syscall.ENOENT constant,
+	// see https://pkg.go.dev/syscall#ENOENT for details.
 	ENOENT = fuse.Errno(syscall.ENOENT)
-	// ENOSYS is a wrapped alias of the syscall.ENOSYS constant
+	// ENOSYS is a wrapped alias of the syscall.ENOSYS constant,
+	// see https://pkg.go.dev/syscall#ENOSYS for details.
 	ENOSYS = fuse.Errno(syscall.ENOSYS)
-	// ENOTDIR is a wrapped alias of the syscall.ENOTDIR constant
+	// ENOTDIR is a wrapped alias of the syscall.ENOTDIR constant,
+	// see https://pkg.go.dev/syscall#ENOTDIR for details.
 	ENOTDIR = fuse.Errno(syscall.ENOTDIR)
 )
