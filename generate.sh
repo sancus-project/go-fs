@@ -122,9 +122,26 @@ generate_proxy() {
 	generate__proxy "$pkg" "$fn" "$vars" "$types" $rets
 }
 
+generate_proxies() {
+	local pkg="$1" x=
+	local fn= vars= types= rets=
+	shift
+	for x; do
+		fn="$(echo "$x" | cut -d: -f1)"
+		vars="$(echo "$x" | cut -d: -f2)"
+		types="$(echo "$x" | cut -d: -f3)"
+		rets="$(echo "$x" | cut -d: -f4)"
+
+		generate_proxy "$pkg" "$fn" "$vars" "$types" "$rets"
+	done
+}
+
 generate_done() {
 	# reformat
-	gofmt -w -l -s "$F~"
+	if ! gofmt -w -l -s "$F~"; then
+		diff -u "$F" "$F~" >&2
+		exit 1
+	fi
 
 	# diff
 	if ! diff -u "$F" "$F~" >&2; then
