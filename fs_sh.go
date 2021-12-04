@@ -9,44 +9,31 @@ import (
 )
 
 type (
-	// PathError is an alias of the io/fs.PathError type,
-	// see https://pkg.go.dev/io/fs#PathError for details.
+	// PathError is an alias of the io/fs.PathError type.
 	PathError = fs.PathError
-	// FS is an alias of the io/fs.FS type,
-	// see https://pkg.go.dev/io/fs#FS for details.
+	// FS is an alias of the io/fs.FS type.
 	FS = fs.FS
-	// File is an alias of the io/fs.File type,
-	// see https://pkg.go.dev/io/fs#File for details.
+	// File is an alias of the io/fs.File type.
 	File = fs.File
-	// FileInfo is an alias of the io/fs.FileInfo type,
-	// see https://pkg.go.dev/io/fs#FileInfo for details.
+	// FileInfo is an alias of the io/fs.FileInfo type.
 	FileInfo = fs.FileInfo
-	// FileMode is an alias of the io/fs.FileMode type,
-	// see https://pkg.go.dev/io/fs#FileMode for details.
+	// FileMode is an alias of the io/fs.FileMode type.
 	FileMode = fs.FileMode
-	// DirEntry is an alias of the io/fs.DirEntry type,
-	// see https://pkg.go.dev/io/fs#DirEntry for details.
+	// DirEntry is an alias of the io/fs.DirEntry type.
 	DirEntry = fs.DirEntry
-	// GlobFS is an alias of the io/fs.GlobFS type,
-	// see https://pkg.go.dev/io/fs#GlobFS for details.
+	// GlobFS is an alias of the io/fs.GlobFS type.
 	GlobFS = fs.GlobFS
-	// StatFS is an alias of the io/fs.StatFS type,
-	// see https://pkg.go.dev/io/fs#StatFS for details.
+	// StatFS is an alias of the io/fs.StatFS type.
 	StatFS = fs.StatFS
-	// SubFS is an alias of the io/fs.SubFS type,
-	// see https://pkg.go.dev/io/fs#SubFS for details.
+	// SubFS is an alias of the io/fs.SubFS type.
 	SubFS = fs.SubFS
-	// ReadDirFS is an alias of the io/fs.ReadDirFS type,
-	// see https://pkg.go.dev/io/fs#ReadDirFS for details.
+	// ReadDirFS is an alias of the io/fs.ReadDirFS type.
 	ReadDirFS = fs.ReadDirFS
-	// ReadDirFile is an alias of the io/fs.ReadDirFile type,
-	// see https://pkg.go.dev/io/fs#ReadDirFile for details.
+	// ReadDirFile is an alias of the io/fs.ReadDirFile type.
 	ReadDirFile = fs.ReadDirFile
-	// ReadFileFS is an alias of the io/fs.ReadFileFS type,
-	// see https://pkg.go.dev/io/fs#ReadFileFS for details.
+	// ReadFileFS is an alias of the io/fs.ReadFileFS type.
 	ReadFileFS = fs.ReadFileFS
-	// WalkDirFunc is an alias of the io/fs.WalkDirFunc type,
-	// see https://pkg.go.dev/io/fs#WalkDirFunc for details.
+	// WalkDirFunc is an alias of the io/fs.WalkDirFunc type.
 	WalkDirFunc = fs.WalkDirFunc
 )
 

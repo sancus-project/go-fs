@@ -15,7 +15,17 @@ EOT
 
 generate_alias() {
 	local t="$1" pkg="$2" n=
+	local needsLink= desc1= desc2=
 	shift 2
+
+	case "${t%:*}" in
+	type)
+		needsLink=false
+		;;
+	*)
+		needsLink=true
+		;;
+	esac
 
 	if [ $# -gt 1 ]; then
 		cat <<EOT
@@ -23,9 +33,18 @@ generate_alias() {
 ${t#*:} (
 EOT
 		for n; do
+			desc1="$n is an alias of the $pkg.$n ${t#*:}"
+			if $needsLink; then
+				desc1="$desc1,"
+				desc2="see https://pkg.go.dev/$pkg#$n for details."
+			else
+				desc1="$desc1."
+				desc2=
+			fi
+
 			cat <<EOT
-	// $n is an alias of the $pkg.$n ${t#*:},
-	// see https://pkg.go.dev/$pkg#$n for details.
+	// $desc1${desc2:+
+	// $desc2}
 	$n = ${pkg##*/}.$n
 EOT
 		done
@@ -34,10 +53,18 @@ EOT
 EOT
 	elif [ $# -eq 1 ]; then
 		n="$1"
+		desc1="$n is an alias of the $pkg.$n ${t#*:}"
+		if $needsLink; then
+			desc1="$desc1,"
+			desc2="see https://pkg.go.dev/$pkg#$n for details."
+		else
+			desc1="$desc1."
+			desc2=
+			fi
 		cat <<EOT
 
-// $n is an alias of the $pkg.$n ${t#*:},
-// see https://pkg.go.dev/$pkg#$n for details.
+// $desc1${desc2:+
+// $desc}
 ${t%:*} $n = ${pkg##*/}.$n
 EOT
 	fi
@@ -53,7 +80,17 @@ generate_types() {
 
 generate_wrapped_alias() {
 	local t="$1" pkg="$2" f="$3" n=
+	local needsLink= desc1= desc2=
 	shift 3
+
+	case "${t%:*}" in
+	type)
+		needsLink=false
+		;;
+	*)
+		needsLink=true
+		;;
+	esac
 
 	if [ $# -gt 1 ]; then
 		cat <<EOT
@@ -61,9 +98,18 @@ generate_wrapped_alias() {
 ${t%:*} (
 EOT
 		for n; do
+			desc1="$n is a wrapped alias of the $pkg.$n ${t#*:}"
+			if $needsLink; then
+				desc1="$desc1,"
+				desc2="see https://pkg.go.dev/$pkg#$n for details."
+			else
+				desc1="$desc1."
+				desc2=
+			fi
+
 			cat <<EOT
-	// $n is a wrapped alias of the $pkg.$n ${t#*:},
-	// see https://pkg.go.dev/$pkg#$n for details.
+	// $desc1${desc2:+
+	// $desc2}
 	$n = $f(${pkg##*/}.$n)
 EOT
 		done
@@ -72,10 +118,19 @@ EOT
 EOT
 	elif [ $# -eq 1 ]; then
 		n="$1"
+		desc1="$n is a wrapped alias of the $pkg.$n ${t#*:}"
+		if $needsLink; then
+			desc1="$desc1,"
+			desc2="see https://pkg.go.dev/$pkg#$n for details."
+		else
+			desc1="$desc1."
+			desc2=
+		fi
+
 		cat <<EOT
 
-// $n is a wrapped alias of the $pkg.$n ${t#*:},
-// see https://pkg.go.dev/$pkg#$n for details.
+// $desc1${desc2:+
+// $desc2}
 ${t%:*} $n = $f(${pkg##*/}.$n)
 EOT
 	fi

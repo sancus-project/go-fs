@@ -104,6 +104,5 @@ func WritebackCache() fuse.MountOption {
 	return fuse.WritebackCache()
 }
 
-// MountOption is an alias of the fuse.MountOption type,
-// see https://pkg.go.dev/fuse#MountOption for details.
+// MountOption is an alias of the fuse.MountOption type.
 type MountOption = fuse.MountOption
