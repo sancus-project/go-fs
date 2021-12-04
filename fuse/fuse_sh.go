@@ -8,85 +8,102 @@ import (
 	"bazil.org/fuse"
 )
 
-// AllowDev is a proxy function to the standard fuse.AllowDev()
+// AllowDev is a proxy function to bazil.org/fuse.AllowDev(),
+// see https://pkg.go.dev/bazil.org/fuse#AllowDev for details.
 func AllowDev() fuse.MountOption {
 	return fuse.AllowDev()
 }
 
-// AllowNonEmptyMount is a proxy function to the standard fuse.AllowNonEmptyMount()
+// AllowNonEmptyMount is a proxy function to bazil.org/fuse.AllowNonEmptyMount(),
+// see https://pkg.go.dev/bazil.org/fuse#AllowNonEmptyMount for details.
 func AllowNonEmptyMount() fuse.MountOption {
 	return fuse.AllowNonEmptyMount()
 }
 
-// AllowOther is a proxy function to the standard fuse.AllowOther()
+// AllowOther is a proxy function to bazil.org/fuse.AllowOther(),
+// see https://pkg.go.dev/bazil.org/fuse#AllowOther for details.
 func AllowOther() fuse.MountOption {
 	return fuse.AllowOther()
 }
 
-// AllowSUID is a proxy function to the standard fuse.AllowSUID()
+// AllowSUID is a proxy function to bazil.org/fuse.AllowSUID(),
+// see https://pkg.go.dev/bazil.org/fuse#AllowSUID for details.
 func AllowSUID() fuse.MountOption {
 	return fuse.AllowSUID()
 }
 
-// AsyncRead is a proxy function to the standard fuse.AsyncRead()
+// AsyncRead is a proxy function to bazil.org/fuse.AsyncRead(),
+// see https://pkg.go.dev/bazil.org/fuse#AsyncRead for details.
 func AsyncRead() fuse.MountOption {
 	return fuse.AsyncRead()
 }
 
-// CongestionThreshold is a proxy function to the standard fuse.CongestionThreshold()
+// CongestionThreshold is a proxy function to bazil.org/fuse.CongestionThreshold(),
+// see https://pkg.go.dev/bazil.org/fuse#CongestionThreshold for details.
 func CongestionThreshold(n uint16) fuse.MountOption {
 	return fuse.CongestionThreshold(n)
 }
 
-// DaemonTimeout is a proxy function to the standard fuse.DaemonTimeout()
+// DaemonTimeout is a proxy function to bazil.org/fuse.DaemonTimeout(),
+// see https://pkg.go.dev/bazil.org/fuse#DaemonTimeout for details.
 func DaemonTimeout(name string) fuse.MountOption {
 	return fuse.DaemonTimeout(name)
 }
 
-// DefaultPermissions is a proxy function to the standard fuse.DefaultPermissions()
+// DefaultPermissions is a proxy function to bazil.org/fuse.DefaultPermissions(),
+// see https://pkg.go.dev/bazil.org/fuse#DefaultPermissions for details.
 func DefaultPermissions() fuse.MountOption {
 	return fuse.DefaultPermissions()
 }
 
-// FSName is a proxy function to the standard fuse.FSName()
+// FSName is a proxy function to bazil.org/fuse.FSName(),
+// see https://pkg.go.dev/bazil.org/fuse#FSName for details.
 func FSName(name string) fuse.MountOption {
 	return fuse.FSName(name)
 }
 
-// LockingFlock is a proxy function to the standard fuse.LockingFlock()
+// LockingFlock is a proxy function to bazil.org/fuse.LockingFlock(),
+// see https://pkg.go.dev/bazil.org/fuse#LockingFlock for details.
 func LockingFlock() fuse.MountOption {
 	return fuse.LockingFlock()
 }
 
-// LockingPOSIX is a proxy function to the standard fuse.LockingPOSIX()
+// LockingPOSIX is a proxy function to bazil.org/fuse.LockingPOSIX(),
+// see https://pkg.go.dev/bazil.org/fuse#LockingPOSIX for details.
 func LockingPOSIX() fuse.MountOption {
 	return fuse.LockingPOSIX()
 }
 
-// MaxBackground is a proxy function to the standard fuse.MaxBackground()
+// MaxBackground is a proxy function to bazil.org/fuse.MaxBackground(),
+// see https://pkg.go.dev/bazil.org/fuse#MaxBackground for details.
 func MaxBackground(n uint16) fuse.MountOption {
 	return fuse.MaxBackground(n)
 }
 
-// MaxReadahead is a proxy function to the standard fuse.MaxReadahead()
+// MaxReadahead is a proxy function to bazil.org/fuse.MaxReadahead(),
+// see https://pkg.go.dev/bazil.org/fuse#MaxReadahead for details.
 func MaxReadahead(n uint32) fuse.MountOption {
 	return fuse.MaxReadahead(n)
 }
 
-// ReadOnly is a proxy function to the standard fuse.ReadOnly()
+// ReadOnly is a proxy function to bazil.org/fuse.ReadOnly(),
+// see https://pkg.go.dev/bazil.org/fuse#ReadOnly for details.
 func ReadOnly() fuse.MountOption {
 	return fuse.ReadOnly()
 }
 
-// Subtype is a proxy function to the standard fuse.Subtype()
+// Subtype is a proxy function to bazil.org/fuse.Subtype(),
+// see https://pkg.go.dev/bazil.org/fuse#Subtype for details.
 func Subtype(fstype string) fuse.MountOption {
 	return fuse.Subtype(fstype)
 }
 
-// WritebackCache is a proxy function to the standard fuse.WritebackCache()
+// WritebackCache is a proxy function to bazil.org/fuse.WritebackCache(),
+// see https://pkg.go.dev/bazil.org/fuse#WritebackCache for details.
 func WritebackCache() fuse.MountOption {
 	return fuse.WritebackCache()
 }
 
-// MountOption is a proxy to the standard fuse.MountOption type
+// MountOption is an alias of the fuse.MountOption type,
+// see https://pkg.go.dev/fuse#MountOption for details.
 type MountOption = fuse.MountOption

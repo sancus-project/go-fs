@@ -41,3 +41,5 @@ done
 
 generate_types fuse \
 	MountOption
+
+generate_done
