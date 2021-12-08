@@ -2,9 +2,11 @@ package fuse
 
 import (
 	"context"
+	"log"
 
 	"bazil.org/fuse"
 
+	"go.sancus.dev/core/errors"
 	"go.sancus.dev/fs"
 	"go.sancus.dev/fs/fuse/types"
 )
@@ -14,6 +16,7 @@ var (
 )
 
 func (node *Node) Mkdir(ctx context.Context, req *fuse.MkdirRequest) (types.Node, error) {
+	log.Printf("%+n: %s", errors.Here(), req)
 
 	name := node.appendName(req.Name)
 
@@ -42,6 +45,8 @@ func (node *Node) Mkdir(ctx context.Context, req *fuse.MkdirRequest) (types.Node
 }
 
 func (fsys *Filesystem) newNode(name string) (types.Node, error) {
+	log.Printf("%+n: %s:%q", errors.Here(), "name", name)
+
 	node := &Node{
 		name: name,
 		fs:   fsys,

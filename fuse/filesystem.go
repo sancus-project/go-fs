@@ -8,6 +8,7 @@ import (
 	"bazil.org/fuse"
 	"github.com/ancientlore/go-avltree"
 
+	"go.sancus.dev/core/errors"
 	"go.sancus.dev/fs/fuse/types"
 )
 
@@ -26,6 +27,7 @@ type Filesystem struct {
 }
 
 func (fsys *Filesystem) Close() error {
+	log.Printf("%+n", errors.Here())
 
 	fsys.mu.Lock()
 	defer fsys.mu.Unlock()
@@ -50,6 +52,8 @@ func (fsys *Filesystem) Close() error {
 func (fsys *Filesystem) Reload() error {
 	var err error
 
+	log.Printf("%+n", errors.Here())
+
 	fsys.mu.Lock()
 	defer fsys.mu.Unlock()
 
@@ -62,6 +66,7 @@ func (fsys *Filesystem) Reload() error {
 }
 
 func (fsys *Filesystem) Root() (types.Node, error) {
+	log.Printf("%+n", errors.Here())
 
 	fsys.mu.Lock()
 	defer fsys.mu.Unlock()
@@ -80,6 +85,7 @@ func (fsys *Filesystem) Root() (types.Node, error) {
 }
 
 func New(store fs.FS, dir string, options ...fuse.MountOption) (*Filesystem, error) {
+	log.Printf("%+n: %s:%q", errors.Here(), "dir", dir)
 
 	conn, err := fuse.Mount(dir, options...)
 	if err != nil {

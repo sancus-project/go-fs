@@ -1,6 +1,9 @@
 package fuse
 
 import (
+	"context"
+	"log"
+
 	"bazil.org/fuse"
 	"bazil.org/fuse/fs"
 )
@@ -10,5 +13,18 @@ func (fsys *Filesystem) Unmount() error {
 }
 
 func (fsys *Filesystem) Serve() error {
-	return fs.Serve(fsys.conn, fsys)
+	cfg := &fs.Config{
+		Debug:       fsys.debug,
+		WithContext: fsys.withContext,
+	}
+	return fs.New(fsys.conn, cfg).Serve(fsys)
+}
+
+func (fsys *Filesystem) debug(msg interface{}) {
+	log.Println(msg)
+}
+
+func (fsys *Filesystem) withContext(ctx context.Context, req fuse.Request) context.Context {
+	//log.Println(req)
+	return ctx
 }

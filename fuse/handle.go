@@ -3,8 +3,10 @@ package fuse
 import (
 	"context"
 	"fmt"
+	"log"
 
 	"bazil.org/fuse"
+	"go.sancus.dev/core/errors"
 	"go.sancus.dev/fs"
 	"go.sancus.dev/fs/fuse/types"
 )
@@ -30,6 +32,7 @@ func (h *Handle) String() string {
 }
 
 func (node *Node) Open(ctx context.Context, req *fuse.OpenRequest, resp *fuse.OpenResponse) (types.Handle, error) {
+	log.Printf("%+n: %s", errors.Here(), node)
 
 	fsys := node.fs
 
@@ -52,6 +55,8 @@ func (node *Node) Open(ctx context.Context, req *fuse.OpenRequest, resp *fuse.Op
 }
 
 func (h *Handle) Release(ctx context.Context, req *fuse.ReleaseRequest) error {
+	log.Printf("%+n: %s", errors.Here(), h)
+
 	fsys := h.node.fs
 
 	fsys.mu.Lock()

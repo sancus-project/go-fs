@@ -2,7 +2,9 @@ package fuse
 
 import (
 	"context"
+	"log"
 
+	"go.sancus.dev/core/errors"
 	"go.sancus.dev/fs"
 	"go.sancus.dev/fs/fuse/types"
 )
@@ -12,6 +14,7 @@ var (
 )
 
 func (node *Node) Attr(ctx context.Context, attr *types.Attr) error {
+	log.Printf("%+n: %s", errors.Here(), node)
 
 	// fs.FileInfo
 	fi, err := fs.Stat(node.fs.store, node.name)

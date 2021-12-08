@@ -3,8 +3,10 @@ package fuse
 import (
 	"context"
 	"fmt"
+	"log"
 	"path"
 
+	"go.sancus.dev/core/errors"
 	"go.sancus.dev/fs"
 	"go.sancus.dev/fs/fuse/types"
 )
@@ -34,6 +36,8 @@ func (node *Node) appendName(name string) string {
 }
 
 func (node *Node) Lookup(ctx context.Context, name string) (types.Node, error) {
+	log.Printf("%+n: %s", errors.Here(), node)
+
 	if !fs.ValidPath(name) {
 		return nil, types.ENOENT
 	}
@@ -42,6 +46,7 @@ func (node *Node) Lookup(ctx context.Context, name string) (types.Node, error) {
 }
 
 func (fsys *Filesystem) open(name string) (types.Node, error) {
+	log.Printf("%+n: %s:%q", errors.Here(), "name", name)
 
 	if name == "." && fsys.root != nil {
 		return fsys.root, nil
@@ -53,6 +58,7 @@ func (fsys *Filesystem) open(name string) (types.Node, error) {
 }
 
 func (fsys *Filesystem) opendir(name string) (types.Node, error) {
+	log.Printf("%+n: %s:%q", errors.Here(), "name", name)
 
 	if name == "." && fsys.root != nil {
 		return fsys.root, nil
