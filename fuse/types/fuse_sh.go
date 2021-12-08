@@ -9,8 +9,108 @@ import (
 	"bazil.org/fuse/fs"
 )
 
-// Attr is an alias of the bazil.org/fuse.Attr type.
-type Attr = fuse.Attr
+type (
+	// Attr is an alias of the bazil.org/fuse.Attr type.
+	Attr = fuse.Attr
+	// AccessRequest is an alias of the bazil.org/fuse.AccessRequest type.
+	AccessRequest = fuse.AccessRequest
+	// CreateRequest is an alias of the bazil.org/fuse.CreateRequest type.
+	CreateRequest = fuse.CreateRequest
+	// CreateResponse is an alias of the bazil.org/fuse.CreateResponse type.
+	CreateResponse = fuse.CreateResponse
+	// FsyncRequest is an alias of the bazil.org/fuse.FsyncRequest type.
+	FsyncRequest = fuse.FsyncRequest
+	// GetattrRequest is an alias of the bazil.org/fuse.GetattrRequest type.
+	GetattrRequest = fuse.GetattrRequest
+	// GetattrResponse is an alias of the bazil.org/fuse.GetattrResponse type.
+	GetattrResponse = fuse.GetattrResponse
+	// GetxattrRequest is an alias of the bazil.org/fuse.GetxattrRequest type.
+	GetxattrRequest = fuse.GetxattrRequest
+	// GetxattrResponse is an alias of the bazil.org/fuse.GetxattrResponse type.
+	GetxattrResponse = fuse.GetxattrResponse
+	// LinkRequest is an alias of the bazil.org/fuse.LinkRequest type.
+	LinkRequest = fuse.LinkRequest
+	// ListxattrRequest is an alias of the bazil.org/fuse.ListxattrRequest type.
+	ListxattrRequest = fuse.ListxattrRequest
+	// ListxattrResponse is an alias of the bazil.org/fuse.ListxattrResponse type.
+	ListxattrResponse = fuse.ListxattrResponse
+	// MkdirRequest is an alias of the bazil.org/fuse.MkdirRequest type.
+	MkdirRequest = fuse.MkdirRequest
+	// MknodRequest is an alias of the bazil.org/fuse.MknodRequest type.
+	MknodRequest = fuse.MknodRequest
+	// OpenRequest is an alias of the bazil.org/fuse.OpenRequest type.
+	OpenRequest = fuse.OpenRequest
+	// OpenResponse is an alias of the bazil.org/fuse.OpenResponse type.
+	OpenResponse = fuse.OpenResponse
+	// PollRequest is an alias of the bazil.org/fuse.PollRequest type.
+	PollRequest = fuse.PollRequest
+	// PollResponse is an alias of the bazil.org/fuse.PollResponse type.
+	PollResponse = fuse.PollResponse
+	// ReadlinkRequest is an alias of the bazil.org/fuse.ReadlinkRequest type.
+	ReadlinkRequest = fuse.ReadlinkRequest
+	// RemoveRequest is an alias of the bazil.org/fuse.RemoveRequest type.
+	RemoveRequest = fuse.RemoveRequest
+	// RemovexattrRequest is an alias of the bazil.org/fuse.RemovexattrRequest type.
+	RemovexattrRequest = fuse.RemovexattrRequest
+	// RenameRequest is an alias of the bazil.org/fuse.RenameRequest type.
+	RenameRequest = fuse.RenameRequest
+	// LookupRequest is an alias of the bazil.org/fuse.LookupRequest type.
+	LookupRequest = fuse.LookupRequest
+	// LookupResponse is an alias of the bazil.org/fuse.LookupResponse type.
+	LookupResponse = fuse.LookupResponse
+	// SetattrRequest is an alias of the bazil.org/fuse.SetattrRequest type.
+	SetattrRequest = fuse.SetattrRequest
+	// SetattrResponse is an alias of the bazil.org/fuse.SetattrResponse type.
+	SetattrResponse = fuse.SetattrResponse
+	// SetxattrRequest is an alias of the bazil.org/fuse.SetxattrRequest type.
+	SetxattrRequest = fuse.SetxattrRequest
+	// SymlinkRequest is an alias of the bazil.org/fuse.SymlinkRequest type.
+	SymlinkRequest = fuse.SymlinkRequest
+)
 
-// Node is an alias of the bazil.org/fuse/fs.Node type.
-type Node = fs.Node
+type (
+	// Node is an alias of the bazil.org/fuse/fs.Node type.
+	Node = fs.Node
+	// NodeForgetter is an alias of the bazil.org/fuse/fs.NodeForgetter type.
+	NodeForgetter = fs.NodeForgetter
+	// NodeAccesser is an alias of the bazil.org/fuse/fs.NodeAccesser type.
+	NodeAccesser = fs.NodeAccesser
+	// NodeCreater is an alias of the bazil.org/fuse/fs.NodeCreater type.
+	NodeCreater = fs.NodeCreater
+	// NodeFsyncer is an alias of the bazil.org/fuse/fs.NodeFsyncer type.
+	NodeFsyncer = fs.NodeFsyncer
+	// NodeGetattrer is an alias of the bazil.org/fuse/fs.NodeGetattrer type.
+	NodeGetattrer = fs.NodeGetattrer
+	// NodeGetxattrer is an alias of the bazil.org/fuse/fs.NodeGetxattrer type.
+	NodeGetxattrer = fs.NodeGetxattrer
+	// NodeLinker is an alias of the bazil.org/fuse/fs.NodeLinker type.
+	NodeLinker = fs.NodeLinker
+	// NodeListxattrer is an alias of the bazil.org/fuse/fs.NodeListxattrer type.
+	NodeListxattrer = fs.NodeListxattrer
+	// NodeMkdirer is an alias of the bazil.org/fuse/fs.NodeMkdirer type.
+	NodeMkdirer = fs.NodeMkdirer
+	// NodeMknoder is an alias of the bazil.org/fuse/fs.NodeMknoder type.
+	NodeMknoder = fs.NodeMknoder
+	// NodeOpener is an alias of the bazil.org/fuse/fs.NodeOpener type.
+	NodeOpener = fs.NodeOpener
+	// NodePoller is an alias of the bazil.org/fuse/fs.NodePoller type.
+	NodePoller = fs.NodePoller
+	// NodeReadlinker is an alias of the bazil.org/fuse/fs.NodeReadlinker type.
+	NodeReadlinker = fs.NodeReadlinker
+	// NodeRemover is an alias of the bazil.org/fuse/fs.NodeRemover type.
+	NodeRemover = fs.NodeRemover
+	// NodeRemovexattrer is an alias of the bazil.org/fuse/fs.NodeRemovexattrer type.
+	NodeRemovexattrer = fs.NodeRemovexattrer
+	// NodeRenamer is an alias of the bazil.org/fuse/fs.NodeRenamer type.
+	NodeRenamer = fs.NodeRenamer
+	// NodeRequestLookuper is an alias of the bazil.org/fuse/fs.NodeRequestLookuper type.
+	NodeRequestLookuper = fs.NodeRequestLookuper
+	// NodeSetattrer is an alias of the bazil.org/fuse/fs.NodeSetattrer type.
+	NodeSetattrer = fs.NodeSetattrer
+	// NodeSetxattrer is an alias of the bazil.org/fuse/fs.NodeSetxattrer type.
+	NodeSetxattrer = fs.NodeSetxattrer
+	// NodeStringLookuper is an alias of the bazil.org/fuse/fs.NodeStringLookuper type.
+	NodeStringLookuper = fs.NodeStringLookuper
+	// NodeSymlinker is an alias of the bazil.org/fuse/fs.NodeSymlinker type.
+	NodeSymlinker = fs.NodeSymlinker
+)
