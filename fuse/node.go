@@ -2,6 +2,7 @@ package fuse
 
 import (
 	"context"
+	"runtime"
 
 	"go.sancus.dev/fs"
 	"go.sancus.dev/fs/fuse/types"
@@ -43,5 +44,18 @@ func (fsys *Filesystem) open(name string) (types.Node, error) {
 		return fsys.Root()
 	}
 
-	return nil, types.ENOENT
+	if f, err := fsys.store.Open(name); err != nil {
+		return nil, err
+	} else {
+		node := &Node{
+			name: name,
+			fs:   fsys,
+			f:    f,
+		}
+
+		runtime.SetFinalizer(node, func(node *Node) {
+			node.f.Close()
+		})
+		return node, nil
+	}
 }
