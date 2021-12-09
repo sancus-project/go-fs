@@ -11,10 +11,11 @@ import (
 EOT
 
 generate_types bazil.org/fuse \
-	Attr \
 	AccessRequest \
+	Attr \
 	CreateRequest \
 	CreateResponse \
+	Dirent \
 	FsyncRequest \
 	GetattrRequest \
 	GetattrResponse \
@@ -23,29 +24,43 @@ generate_types bazil.org/fuse \
 	LinkRequest \
 	ListxattrRequest \
 	ListxattrResponse \
+	LookupRequest \
+	LookupResponse \
 	MkdirRequest \
 	MknodRequest \
 	OpenRequest \
 	OpenResponse \
 	PollRequest \
 	PollResponse \
+	ReadRequest \
+	ReadResponse \
 	ReadlinkRequest \
+	ReleaseRequest \
 	RemoveRequest \
 	RemovexattrRequest \
 	RenameRequest \
-	LookupRequest \
-	LookupResponse \
 	SetattrRequest \
 	SetattrResponse \
 	SetxattrRequest \
-	SymlinkRequest
-
+	StatfsRequest \
+	StatfsResponse \
+	SymlinkRequest \
+	WriteRequest \
+	WriteResponse
 
 generate_types bazil.org/fuse/fs \
+	FS \
+	FSDestroyer \
+	FSStatfser \
+	Handle \
+	HandlePoller \
+	HandleReadAller \
+	HandleReadDirAller \
+	HandleWriter \
 	Node \
-	NodeForgetter \
 	NodeAccesser \
 	NodeCreater \
+	NodeForgetter \
 	NodeFsyncer \
 	NodeGetattrer \
 	NodeGetxattrer \
@@ -64,7 +79,5 @@ generate_types bazil.org/fuse/fs \
 	NodeSetxattrer \
 	NodeStringLookuper \
 	NodeSymlinker
-
-
 
 generate_done
