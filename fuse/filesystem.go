@@ -6,6 +6,11 @@ import (
 	"sync"
 
 	"bazil.org/fuse"
+	"go.sancus.dev/fs/fuse/types"
+)
+
+var (
+	_ types.FS = (*Filesystem)(nil)
 )
 
 type Filesystem struct {
@@ -13,7 +18,7 @@ type Filesystem struct {
 	store fs.FS
 	conn  *fuse.Conn
 	dir   string
-	root  *Dir
+	root  types.Node
 }
 
 func (fsys *Filesystem) Close() error {
@@ -50,6 +55,24 @@ func (fsys *Filesystem) Reload() error {
 
 	// TODO: invalidate cache
 	return err
+}
+
+func (fsys *Filesystem) Root() (types.Node, error) {
+
+	fsys.mu.Lock()
+	defer fsys.mu.Unlock()
+
+	if fsys.root != nil {
+		// cached
+	} else if d, err := fsys.opendir("."); err != nil {
+		// failed
+		return nil, err
+	} else {
+		// remember
+		fsys.root = d
+	}
+
+	return fsys.root, nil
 }
 
 func New(store fs.FS, dir string, options ...fuse.MountOption) (*Filesystem, error) {
