@@ -30,6 +30,8 @@ type (
 	GetxattrRequest = fuse.GetxattrRequest
 	// GetxattrResponse is an alias of the bazil.org/fuse.GetxattrResponse type.
 	GetxattrResponse = fuse.GetxattrResponse
+	// HandleID is an alias of the bazil.org/fuse.HandleID type.
+	HandleID = fuse.HandleID
 	// LinkRequest is an alias of the bazil.org/fuse.LinkRequest type.
 	LinkRequest = fuse.LinkRequest
 	// ListxattrRequest is an alias of the bazil.org/fuse.ListxattrRequest type.

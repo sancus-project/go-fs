@@ -21,6 +21,7 @@ generate_types bazil.org/fuse \
 	GetattrResponse \
 	GetxattrRequest \
 	GetxattrResponse \
+	HandleID \
 	LinkRequest \
 	ListxattrRequest \
 	ListxattrResponse \
