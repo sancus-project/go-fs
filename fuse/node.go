@@ -26,7 +26,7 @@ func (node *Node) Attr(ctx context.Context, attr *types.Attr) error {
 	// fs.FileInfo
 	fi, err := fs.Stat(node.fs.store, node.name)
 	if err != nil {
-		return nil
+		return fs.AsPathError("stat", node.name, err)
 	}
 
 	size := fi.Size()
@@ -50,6 +50,7 @@ func (fsys *Filesystem) open(name string) (types.Node, error) {
 	if name == "." && fsys.root != nil {
 		return fsys.root, nil
 	} else if _, err := fs.Stat(fsys.store, name); err != nil {
+		err = fs.AsPathError("stat", name, err)
 		return nil, err
 	} else {
 		node := &Node{
@@ -66,9 +67,10 @@ func (fsys *Filesystem) opendir(name string) (types.Node, error) {
 	if name == "." && fsys.root != nil {
 		return fsys.root, nil
 	} else if fi, err := fs.Stat(fsys.store, name); err != nil {
+		err = fs.AsPathError("stat", name, err)
 		return nil, err
 	} else if !fi.IsDir() {
-		err = &fs.PathError{"opendir", name, types.ENOTDIR}
+		err = fs.AsPathError("opendir", name, types.ENOTDIR)
 		return nil, err
 	} else {
 		node := &Node{
