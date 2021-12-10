@@ -13,7 +13,6 @@ var (
 	_ types.HandleReadAller    = (*Handle)(nil)
 	_ types.HandleReadDirAller = (*Handle)(nil)
 	_ types.HandleReader       = (*Handle)(nil)
-	_ types.HandleReleaser     = (*Handle)(nil)
 	_ types.HandleWriter       = (*Handle)(nil)
 )
 
@@ -34,10 +33,6 @@ func (h *Handle) ReadDirAll(ctx context.Context) ([]fuse.Dirent, error) {
 }
 
 func (h *Handle) Read(ctx context.Context, req *fuse.ReadRequest, resp *fuse.ReadResponse) error {
-	return types.ENOSYS
-}
-
-func (h *Handle) Release(ctx context.Context, req *fuse.ReleaseRequest) error {
 	return types.ENOSYS
 }
 

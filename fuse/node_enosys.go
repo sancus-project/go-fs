@@ -16,7 +16,6 @@ var (
 	_ types.NodeListxattrer   = (*Node)(nil)
 	_ types.NodeMknoder       = (*Node)(nil)
 	_ types.NodePoller        = (*Node)(nil)
-	_ types.NodeOpener        = (*Node)(nil)
 	_ types.NodeReadlinker    = (*Node)(nil)
 	_ types.NodeRemover       = (*Node)(nil)
 	_ types.NodeRemovexattrer = (*Node)(nil)
@@ -54,10 +53,6 @@ func (node *Node) Listxattr(ctx context.Context, req *fuse.ListxattrRequest, res
 }
 
 func (node *Node) Mknod(ctx context.Context, req *fuse.MknodRequest) (types.Node, error) {
-	return nil, types.ENOSYS
-}
-
-func (node *Node) Open(ctx context.Context, req *fuse.OpenRequest, resp *fuse.OpenResponse) (types.Handle, error) {
 	return nil, types.ENOSYS
 }
 
