@@ -6,6 +6,8 @@ import (
 	"sync"
 
 	"bazil.org/fuse"
+	"github.com/ancientlore/go-avltree"
+
 	"go.sancus.dev/fs/fuse/types"
 )
 
@@ -14,11 +16,13 @@ var (
 )
 
 type Filesystem struct {
-	mu    sync.RWMutex
-	store fs.FS
-	conn  *fuse.Conn
-	dir   string
-	root  types.Node
+	mu      sync.RWMutex
+	store   fs.FS
+	handles *avltree.Tree
+	last    fuse.HandleID
+	conn    *fuse.Conn
+	dir     string
+	root    types.Node
 }
 
 func (fsys *Filesystem) Close() error {
@@ -83,10 +87,24 @@ func New(store fs.FS, dir string, options ...fuse.MountOption) (*Filesystem, err
 	}
 
 	m := &Filesystem{
-		store: store,
-		conn:  conn,
-		dir:   dir,
+		store:   store,
+		handles: avltree.New(handleCompare, 0),
+		conn:    conn,
+		dir:     dir,
 	}
 
 	return m, nil
+}
+
+func handleCompare(a, b interface{}) int {
+	ha := a.(*Handle)
+	hb := b.(*Handle)
+
+	if ha.id < hb.id {
+		return -1
+	} else if ha.id > hb.id {
+		return 1
+	} else {
+		return 0
+	}
 }
