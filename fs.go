@@ -1,5 +1,11 @@
 package fs
 
+type ChmodFS interface {
+	FS
+
+	Chmod(name string, perm FileMode) error
+}
+
 type CreateFS interface {
 	FS
 
@@ -10,4 +16,10 @@ type OpenFileFS interface {
 	FS
 
 	OpenFile(name string, flag int, perm FileMode) (File, error)
+}
+
+type MkdirFS interface {
+	FS
+
+	Mkdir(name string, perm FileMode) error
 }
