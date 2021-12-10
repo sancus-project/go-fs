@@ -18,7 +18,7 @@ type Node struct {
 }
 
 func (node *Node) String() string {
-	return fmt.Sprintf("node:%q (%p)", node.name, node)
+	return fmt.Sprintf("node:%p name:%q", node, node.name)
 }
 
 func (node *Node) Attr(ctx context.Context, attr *types.Attr) error {
@@ -45,6 +45,14 @@ func (node *Node) Attr(ctx context.Context, attr *types.Attr) error {
 	return nil
 }
 
+func (fsys *Filesystem) newNode(name string) (types.Node, error) {
+	node := &Node{
+		name: name,
+		fs:   fsys,
+	}
+	return node, nil
+}
+
 func (fsys *Filesystem) open(name string) (types.Node, error) {
 
 	if name == "." && fsys.root != nil {
@@ -53,12 +61,7 @@ func (fsys *Filesystem) open(name string) (types.Node, error) {
 		err = fs.AsPathError("stat", name, err)
 		return nil, err
 	} else {
-		node := &Node{
-			name: name,
-			fs:   fsys,
-		}
-
-		return node, nil
+		return fsys.newNode(name)
 	}
 }
 
@@ -73,10 +76,6 @@ func (fsys *Filesystem) opendir(name string) (types.Node, error) {
 		err = fs.AsPathError("opendir", name, types.ENOTDIR)
 		return nil, err
 	} else {
-		node := &Node{
-			name: name,
-			fs:   fsys,
-		}
-		return node, nil
+		return fsys.newNode(name)
 	}
 }
