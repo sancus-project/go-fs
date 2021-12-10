@@ -3,13 +3,17 @@ package fuse
 import (
 	"context"
 	"fmt"
+	"path"
+
+	"bazil.org/fuse"
 
 	"go.sancus.dev/fs"
 	"go.sancus.dev/fs/fuse/types"
 )
 
 var (
-	_ types.Node = (*Node)(nil)
+	_ types.Node        = (*Node)(nil)
+	_ types.NodeMkdirer = (*Node)(nil)
 )
 
 type Node struct {
@@ -19,6 +23,17 @@ type Node struct {
 
 func (node *Node) String() string {
 	return fmt.Sprintf("node:%p name:%q", node, node.name)
+}
+
+func (node *Node) appendName(name string) string {
+
+	if node.name == "." {
+		return name
+	} else if name == "." {
+		return node.name
+	} else {
+		return path.Join(node.name, name)
+	}
 }
 
 func (node *Node) Attr(ctx context.Context, attr *types.Attr) error {
@@ -43,6 +58,34 @@ func (node *Node) Attr(ctx context.Context, attr *types.Attr) error {
 	}
 
 	return nil
+}
+
+func (node *Node) Mkdir(ctx context.Context, req *fuse.MkdirRequest) (types.Node, error) {
+
+	name := node.appendName(req.Name)
+
+	if fsys, ok := node.fs.store.(fs.MkdirFS); !ok {
+		return nil, fs.AsPathError("mkdir", name, types.EPERM)
+	} else if err := fsys.Mkdir(name, req.Mode); err != nil {
+		return nil, fs.AsPathError("mkdir", name, err)
+	} else if cfs, ok := fsys.(fs.ChmodFS); ok {
+
+		// umask
+		if fi, err := fs.Stat(node.fs.store, name); err != nil {
+			return nil, fs.AsPathError("stat", name, err)
+		} else {
+			mode0 := fi.Mode()
+			mode1 := mode0 &^ req.Umask
+
+			if mode0 == mode1 {
+				// ready
+			} else if err = cfs.Chmod(name, mode1); err != nil {
+				return nil, fs.AsPathError("chmod", name, err)
+			}
+		}
+	}
+
+	return node.fs.newNode(name)
 }
 
 func (fsys *Filesystem) newNode(name string) (types.Node, error) {
