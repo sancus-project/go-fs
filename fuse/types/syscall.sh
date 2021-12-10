@@ -15,5 +15,6 @@ generate_wrapped_const syscall fuse.Errno \
 	ENOENT \
 	ENOSYS \
 	ENOTDIR \
+	EPERM
 
 generate_done

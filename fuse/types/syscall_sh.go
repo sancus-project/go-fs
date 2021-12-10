@@ -17,4 +17,6 @@ const (
 	ENOSYS = fuse.Errno(syscall.ENOSYS)
 	// ENOTDIR is a wrapped alias of the syscall.ENOTDIR constant.
 	ENOTDIR = fuse.Errno(syscall.ENOTDIR)
+	// EPERM is a wrapped alias of the syscall.EPERM constant.
+	EPERM = fuse.Errno(syscall.EPERM)
 )
