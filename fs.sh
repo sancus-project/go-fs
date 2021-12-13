@@ -9,6 +9,9 @@ import (
 )
 EOT
 
+generate_const io/fs \
+	ModeDir
+
 generate_types io/fs \
 	PathError \
 	FS \

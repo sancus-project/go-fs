@@ -8,6 +8,9 @@ import (
 	"io/fs"
 )
 
+// ModeDir is an alias of the io/fs.ModeDir constant.
+const ModeDir = fs.ModeDir
+
 type (
 	// PathError is an alias of the io/fs.PathError type.
 	PathError = fs.PathError
