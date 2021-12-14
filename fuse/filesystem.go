@@ -66,7 +66,7 @@ func (fsys *Filesystem) Root() (types.Node, error) {
 		// cached
 	} else if d, err := fsys.opendir("."); err != nil {
 		// failed
-		return nil, err
+		return nil, ToErrno(err)
 	} else {
 		// remember
 		fsys.root = d

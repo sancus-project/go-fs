@@ -41,7 +41,7 @@ func (node *Node) Attr(ctx context.Context, attr *types.Attr) error {
 	// fs.FileInfo
 	fi, err := fs.Stat(node.fs.store, node.name)
 	if err != nil {
-		return fs.AsPathError("stat", node.name, err)
+		return ToErrno(err)
 	}
 
 	size := fi.Size()
@@ -65,14 +65,14 @@ func (node *Node) Mkdir(ctx context.Context, req *fuse.MkdirRequest) (types.Node
 	name := node.appendName(req.Name)
 
 	if fsys, ok := node.fs.store.(fs.MkdirFS); !ok {
-		return nil, fs.AsPathError("mkdir", name, types.EPERM)
+		return nil, types.EPERM
 	} else if err := fsys.Mkdir(name, req.Mode); err != nil {
-		return nil, fs.AsPathError("mkdir", name, err)
+		return nil, ToErrno(err)
 	} else if cfs, ok := fsys.(fs.ChmodFS); ok {
 
 		// umask
 		if fi, err := fs.Stat(node.fs.store, name); err != nil {
-			return nil, fs.AsPathError("stat", name, err)
+			return nil, ToErrno(err)
 		} else {
 			mode0 := fi.Mode()
 			mode1 := mode0 &^ req.Umask
@@ -80,7 +80,7 @@ func (node *Node) Mkdir(ctx context.Context, req *fuse.MkdirRequest) (types.Node
 			if mode0 == mode1 {
 				// ready
 			} else if err = cfs.Chmod(name, mode1); err != nil {
-				return nil, fs.AsPathError("chmod", name, err)
+				return nil, ToErrno(err)
 			}
 		}
 	}
@@ -101,8 +101,7 @@ func (fsys *Filesystem) open(name string) (types.Node, error) {
 	if name == "." && fsys.root != nil {
 		return fsys.root, nil
 	} else if _, err := fs.Stat(fsys.store, name); err != nil {
-		err = fs.AsPathError("stat", name, err)
-		return nil, err
+		return nil, ToErrno(err)
 	} else {
 		return fsys.newNode(name)
 	}
@@ -113,11 +112,9 @@ func (fsys *Filesystem) opendir(name string) (types.Node, error) {
 	if name == "." && fsys.root != nil {
 		return fsys.root, nil
 	} else if fi, err := fs.Stat(fsys.store, name); err != nil {
-		err = fs.AsPathError("stat", name, err)
-		return nil, err
+		return nil, ToErrno(err)
 	} else if !fi.IsDir() {
-		err = fs.AsPathError("opendir", name, types.ENOTDIR)
-		return nil, err
+		return nil, types.ENOTDIR
 	} else {
 		return fsys.newNode(name)
 	}
