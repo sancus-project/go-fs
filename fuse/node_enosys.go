@@ -8,23 +8,22 @@ import (
 )
 
 var (
-	_ types.NodeAccesser       = (*Node)(nil)
-	_ types.NodeCreater        = (*Node)(nil)
-	_ types.NodeForgetter      = (*Node)(nil)
-	_ types.NodeGetxattrer     = (*Node)(nil)
-	_ types.NodeLinker         = (*Node)(nil)
-	_ types.NodeListxattrer    = (*Node)(nil)
-	_ types.NodeMknoder        = (*Node)(nil)
-	_ types.NodePoller         = (*Node)(nil)
-	_ types.NodeOpener         = (*Node)(nil)
-	_ types.NodeReadlinker     = (*Node)(nil)
-	_ types.NodeRemover        = (*Node)(nil)
-	_ types.NodeRemovexattrer  = (*Node)(nil)
-	_ types.NodeRenamer        = (*Node)(nil)
-	_ types.NodeSetattrer      = (*Node)(nil)
-	_ types.NodeSetxattrer     = (*Node)(nil)
-	_ types.NodeStringLookuper = (*Node)(nil)
-	_ types.NodeSymlinker      = (*Node)(nil)
+	_ types.NodeAccesser      = (*Node)(nil)
+	_ types.NodeCreater       = (*Node)(nil)
+	_ types.NodeForgetter     = (*Node)(nil)
+	_ types.NodeGetxattrer    = (*Node)(nil)
+	_ types.NodeLinker        = (*Node)(nil)
+	_ types.NodeListxattrer   = (*Node)(nil)
+	_ types.NodeMknoder       = (*Node)(nil)
+	_ types.NodePoller        = (*Node)(nil)
+	_ types.NodeOpener        = (*Node)(nil)
+	_ types.NodeReadlinker    = (*Node)(nil)
+	_ types.NodeRemover       = (*Node)(nil)
+	_ types.NodeRemovexattrer = (*Node)(nil)
+	_ types.NodeRenamer       = (*Node)(nil)
+	_ types.NodeSetattrer     = (*Node)(nil)
+	_ types.NodeSetxattrer    = (*Node)(nil)
+	_ types.NodeSymlinker     = (*Node)(nil)
 )
 
 func (node *Node) Access(ctx context.Context, req *fuse.AccessRequest) error {
@@ -88,10 +87,6 @@ func (node *Node) Setattr(ctx context.Context, req *fuse.SetattrRequest, resp *f
 
 func (node *Node) Setxattr(ctx context.Context, req *fuse.SetxattrRequest) error {
 	return types.ENOSYS
-}
-
-func (node *Node) Lookup(ctx context.Context, name string) (types.Node, error) {
-	return nil, types.ENOSYS
 }
 
 func (node *Node) Symlink(ctx context.Context, req *fuse.SymlinkRequest) (types.Node, error) {

@@ -1,11 +1,16 @@
 package fuse
 
 import (
+	"context"
 	"fmt"
 	"path"
 
 	"go.sancus.dev/fs"
 	"go.sancus.dev/fs/fuse/types"
+)
+
+var (
+	_ types.NodeStringLookuper = (*Node)(nil)
 )
 
 type Node struct {
@@ -26,6 +31,14 @@ func (node *Node) appendName(name string) string {
 	} else {
 		return path.Join(node.name, name)
 	}
+}
+
+func (node *Node) Lookup(ctx context.Context, name string) (types.Node, error) {
+	if !fs.ValidPath(name) {
+		return nil, types.ENOENT
+	}
+
+	return node.fs.open(node.appendName(name))
 }
 
 func (fsys *Filesystem) open(name string) (types.Node, error) {
