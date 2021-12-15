@@ -12,7 +12,6 @@ import (
 )
 
 var (
-	_ types.Node        = (*Node)(nil)
 	_ types.NodeMkdirer = (*Node)(nil)
 )
 
@@ -34,30 +33,6 @@ func (node *Node) appendName(name string) string {
 	} else {
 		return path.Join(node.name, name)
 	}
-}
-
-func (node *Node) Attr(ctx context.Context, attr *types.Attr) error {
-
-	// fs.FileInfo
-	fi, err := fs.Stat(node.fs.store, node.name)
-	if err != nil {
-		return ToErrno(err)
-	}
-
-	size := fi.Size()
-	if size < 0 {
-		size = 0
-	}
-	modtime := fi.ModTime()
-
-	*attr = types.Attr{
-		Size:  uint64(size),
-		Mtime: modtime,
-		Ctime: modtime,
-		Mode:  fi.Mode(),
-	}
-
-	return nil
 }
 
 func (node *Node) Mkdir(ctx context.Context, req *fuse.MkdirRequest) (types.Node, error) {

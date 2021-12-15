@@ -11,7 +11,6 @@ var (
 	_ types.NodeAccesser       = (*Node)(nil)
 	_ types.NodeCreater        = (*Node)(nil)
 	_ types.NodeForgetter      = (*Node)(nil)
-	_ types.NodeGetattrer      = (*Node)(nil)
 	_ types.NodeGetxattrer     = (*Node)(nil)
 	_ types.NodeLinker         = (*Node)(nil)
 	_ types.NodeListxattrer    = (*Node)(nil)
@@ -40,10 +39,6 @@ func (node *Node) Forget() {
 }
 
 func (node *Node) Fsyncer(ctx context.Context, req *fuse.FsyncRequest) error {
-	return types.ENOSYS
-}
-
-func (node *Node) Getattr(ctx context.Context, req *fuse.GetattrRequest, resp *fuse.GetattrResponse) error {
 	return types.ENOSYS
 }
 
