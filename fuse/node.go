@@ -19,7 +19,7 @@ type Node struct {
 }
 
 func (node *Node) String() string {
-	return fmt.Sprintf("node:%p name:%q", node, node.name)
+	return fmt.Sprintf("Node=%q (%p)", node.name, node)
 }
 
 func (node *Node) appendName(name string) string {
