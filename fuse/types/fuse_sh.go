@@ -95,12 +95,18 @@ type (
 	FSStatfser = fs.FSStatfser
 	// Handle is an alias of the bazil.org/fuse/fs.Handle type.
 	Handle = fs.Handle
+	// HandleFlusher is an alias of the bazil.org/fuse/fs.HandleFlusher type.
+	HandleFlusher = fs.HandleFlusher
 	// HandlePoller is an alias of the bazil.org/fuse/fs.HandlePoller type.
 	HandlePoller = fs.HandlePoller
 	// HandleReadAller is an alias of the bazil.org/fuse/fs.HandleReadAller type.
 	HandleReadAller = fs.HandleReadAller
 	// HandleReadDirAller is an alias of the bazil.org/fuse/fs.HandleReadDirAller type.
 	HandleReadDirAller = fs.HandleReadDirAller
+	// HandleReader is an alias of the bazil.org/fuse/fs.HandleReader type.
+	HandleReader = fs.HandleReader
+	// HandleReleaser is an alias of the bazil.org/fuse/fs.HandleReleaser type.
+	HandleReleaser = fs.HandleReleaser
 	// HandleWriter is an alias of the bazil.org/fuse/fs.HandleWriter type.
 	HandleWriter = fs.HandleWriter
 	// Node is an alias of the bazil.org/fuse/fs.Node type.

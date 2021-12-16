@@ -54,9 +54,12 @@ generate_types bazil.org/fuse/fs \
 	FSDestroyer \
 	FSStatfser \
 	Handle \
+	HandleFlusher \
 	HandlePoller \
 	HandleReadAller \
 	HandleReadDirAller \
+	HandleReader \
+	HandleReleaser \
 	HandleWriter \
 	Node \
 	NodeAccesser \
