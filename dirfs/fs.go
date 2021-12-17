@@ -70,10 +70,17 @@ func (fsys *Filesystem) Close() error {
 	return nil
 }
 
-func New(prefix string) (*Filesystem, error) {
-	fsys := &Filesystem{
-		prefix: prefix,
-	}
+func New(dir string) (*Filesystem, error) {
+	if fi, err := os.Stat(dir); err != nil {
+		return nil, err
+	} else if !fi.IsDir() {
+		return nil, syscall.ENOTDIR
+	} else {
 
-	return fsys, nil
+		fsys := &Filesystem{
+			prefix: dir,
+		}
+
+		return fsys, nil
+	}
 }
