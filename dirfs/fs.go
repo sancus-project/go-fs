@@ -41,16 +41,26 @@ func (fsys *Filesystem) Open(name string) (fs.File, error) {
 	}
 }
 
+func (fsys *Filesystem) Stat(name string) (fs.FileInfo, error) {
+	if fullname, err := fsys.fullname(name); err != nil {
+		return nil, fs.AsPathError("stat", name, err)
+	} else if fi, err := os.Stat(fullname); err != nil {
+		return nil, fs.AsPathError("stat", name, err)
+	} else {
+		return fi, nil
+	}
+}
+
 func (fsys *Filesystem) Sub(dir string) (fs.FS, error) {
-	if name, err := fsys.fullname(dir); err != nil {
+	if fullname, err := fsys.fullname(dir); err != nil {
 		return nil, fs.AsPathError("sub", dir, err)
-	} else if fi, err := os.Stat(name); err != nil {
+	} else if fi, err := os.Stat(fullname); err != nil {
 		return nil, fs.AsPathError("sub", dir, err)
 	} else if !fi.IsDir() {
 		return nil, fs.AsPathError("sub", dir, syscall.ENOTDIR)
 	} else {
 		sub := &Filesystem{
-			prefix: name,
+			prefix: fullname,
 		}
 		return sub, nil
 	}
