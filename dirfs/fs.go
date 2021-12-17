@@ -16,12 +16,11 @@ type Filesystem struct {
 
 func (fsys *Filesystem) fullname(name string) (string, error) {
 	name = path.Clean("/" + name)
-	if name[0] != '/' || !fs.ValidPath(name[1:]) {
-		return "", syscall.EINVAL
-	}
 
 	if name == "/" {
 		name = fsys.prefix
+	} else if name[0] != '/' || !fs.ValidPath(name[1:]) {
+		return "", syscall.EINVAL
 	} else if filepath.Separator == '/' {
 		name = fsys.prefix + name
 	} else {
