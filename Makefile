@@ -1,6 +1,7 @@
 .PHONY: all generate fmt build test
 
 GO ?= go
+GODOC ?= godoc
 GOFMT ?= gofmt
 GOFMT_FLAGS = -w -l -s
 GOGENERATE_FLAGS = -v
@@ -21,3 +22,6 @@ build:
 
 test:
 	$(GO) test -v ./...
+
+doc:
+	$(GODOC) -http :6060
