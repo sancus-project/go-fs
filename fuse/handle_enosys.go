@@ -10,12 +10,11 @@ import (
 )
 
 var (
-	_ types.HandleFlusher      = (*Handle)(nil)
-	_ types.HandlePoller       = (*Handle)(nil)
-	_ types.HandleReadAller    = (*Handle)(nil)
-	_ types.HandleReadDirAller = (*Handle)(nil)
-	_ types.HandleReader       = (*Handle)(nil)
-	_ types.HandleWriter       = (*Handle)(nil)
+	_ types.HandleFlusher   = (*Handle)(nil)
+	_ types.HandlePoller    = (*Handle)(nil)
+	_ types.HandleReadAller = (*Handle)(nil)
+	_ types.HandleReader    = (*Handle)(nil)
+	_ types.HandleWriter    = (*Handle)(nil)
 )
 
 func (h *Handle) Flush(ctx context.Context, req *fuse.FlushRequest) error {
@@ -29,11 +28,6 @@ func (h *Handle) Poll(ctx context.Context, req *fuse.PollRequest, resp *fuse.Pol
 }
 
 func (h *Handle) ReadAll(ctx context.Context) ([]byte, error) {
-	log.Printf("%+n: %s", errors.Here(), h)
-	return nil, types.ENOSYS
-}
-
-func (h *Handle) ReadDirAll(ctx context.Context) ([]fuse.Dirent, error) {
 	log.Printf("%+n: %s", errors.Here(), h)
 	return nil, types.ENOSYS
 }
