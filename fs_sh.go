@@ -6,10 +6,33 @@ package fs
 
 import (
 	"io/fs"
+	"os"
 )
 
 // ModeDir is an alias of the io/fs.ModeDir constant.
 const ModeDir = fs.ModeDir
+
+var (
+	// ErrInvalid is an alias of the io/fs.ErrInvalid constant.
+	ErrInvalid = fs.ErrInvalid
+	// ErrPermission is an alias of the io/fs.ErrPermission constant.
+	ErrPermission = fs.ErrPermission
+	// ErrExist is an alias of the io/fs.ErrExist constant.
+	ErrExist = fs.ErrExist
+	// ErrNotExist is an alias of the io/fs.ErrNotExist constant.
+	ErrNotExist = fs.ErrNotExist
+	// ErrClosed is an alias of the io/fs.ErrClosed constant.
+	ErrClosed = fs.ErrClosed
+	// SkipDir is an alias of the io/fs.SkipDir constant.
+	SkipDir = fs.SkipDir
+)
+
+var (
+	// ErrNoDeadline is an alias of the os.ErrNoDeadline constant.
+	ErrNoDeadline = os.ErrNoDeadline
+	// ErrDeadlineExceeded is an alias of the os.ErrDeadlineExceeded constant.
+	ErrDeadlineExceeded = os.ErrDeadlineExceeded
+)
 
 type (
 	// PathError is an alias of the io/fs.PathError type.
@@ -39,6 +62,9 @@ type (
 	// WalkDirFunc is an alias of the io/fs.WalkDirFunc type.
 	WalkDirFunc = fs.WalkDirFunc
 )
+
+// SyscallError is an alias of the os.SyscallError type.
+type SyscallError = os.SyscallError
 
 // ValidPath is a proxy function to io/fs.ValidPath(),
 // see https://pkg.go.dev/io/fs#ValidPath for details.
@@ -86,4 +112,28 @@ func FileInfoToDirEntry(info fs.FileInfo) DirEntry {
 // see https://pkg.go.dev/io/fs#WalkDir for details.
 func WalkDir(fsys fs.FS, root string, fn WalkDirFunc) error {
 	return fs.WalkDir(fsys, root, fn)
+}
+
+// IsPermission is a proxy function to os.IsPermission(),
+// see https://pkg.go.dev/os#IsPermission for details.
+func IsPermission(err error) bool {
+	return os.IsPermission(err)
+}
+
+// IsExist is a proxy function to os.IsExist(),
+// see https://pkg.go.dev/os#IsExist for details.
+func IsExist(err error) bool {
+	return os.IsExist(err)
+}
+
+// IsNotExist is a proxy function to os.IsNotExist(),
+// see https://pkg.go.dev/os#IsNotExist for details.
+func IsNotExist(err error) bool {
+	return os.IsNotExist(err)
+}
+
+// IsTimeout is a proxy function to os.IsTimeout(),
+// see https://pkg.go.dev/os#IsTimeout for details.
+func IsTimeout(err error) bool {
+	return os.IsTimeout(err)
 }

@@ -6,11 +6,24 @@ cat <<EOT
 
 import (
 	"io/fs"
+	"os"
 )
 EOT
 
 generate_const io/fs \
 	ModeDir
+
+generate_var io/fs \
+	ErrInvalid \
+	ErrPermission \
+	ErrExist \
+	ErrNotExist \
+	ErrClosed \
+	SkipDir
+
+generate_var os \
+	ErrNoDeadline \
+	ErrDeadlineExceeded
 
 generate_types io/fs \
 	PathError \
@@ -27,6 +40,9 @@ generate_types io/fs \
 	ReadFileFS \
 	WalkDirFunc
 
+generate_types os \
+	SyscallError
+
 generate_proxies \
 	io/fs \
 	ValidPath:name:string:bool \
@@ -37,5 +53,12 @@ generate_proxies \
 	Sub:fsys,dir:fs.FS,string:fs.FS,error \
 	FileInfoToDirEntry:info:fs.FileInfo:DirEntry \
 	WalkDir:fsys,root,fn:fs.FS,string,WalkDirFunc:error \
+
+generate_proxies \
+	os \
+	IsPermission:err:error:bool \
+	IsExist:err:error:bool \
+	IsNotExist:err:error:bool \
+	IsTimeout:err:error:bool \
 
 generate_done

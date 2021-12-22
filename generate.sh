@@ -20,7 +20,7 @@ generate_alias() {
 	if [ $# -gt 1 ]; then
 		cat <<EOT
 
-${t#*:} (
+${t%:*} (
 EOT
 		for n; do
 
@@ -48,6 +48,10 @@ generate_const() {
 
 generate_types() {
 	generate_alias type "$@"
+}
+
+generate_var() {
+	generate_alias var:constant "$@"
 }
 
 generate_wrapped_alias() {
