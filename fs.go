@@ -9,7 +9,7 @@ type ChmodFS interface {
 type CreateFS interface {
 	FS
 
-	Create(name string) (*File, error)
+	Create(name string) (File, error)
 }
 
 type OpenFileFS interface {
