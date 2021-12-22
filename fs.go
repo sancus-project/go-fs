@@ -23,3 +23,9 @@ type MkdirFS interface {
 
 	Mkdir(name string, perm FileMode) error
 }
+
+type WriteFileFS interface {
+	FS
+
+	WriteFile(name string, data []byte, perm FileMode) error
+}
