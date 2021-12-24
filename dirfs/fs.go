@@ -33,12 +33,12 @@ func (fsys *Filesystem) fullname(name string) (string, error) {
 		name = fsys.prefix
 	} else if name[0] != '/' || !fs.ValidPath(name[1:]) {
 		return "", syscall.EINVAL
-	} else if filepath.Separator == '/' {
-		name = fsys.prefix + name
-	} else {
+	} else if filepath.Separator != '/' {
 		s := strings.Split(name[1:], "/")
 		s = append([]string{fsys.prefix}, s...)
 		name = filepath.Join(s...)
+	} else if fsys.prefix != "/" {
+		name = fsys.prefix + name
 	}
 
 	return name, nil
