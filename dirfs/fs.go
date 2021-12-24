@@ -1,6 +1,7 @@
 package dirfs
 
 import (
+	"fmt"
 	"os"
 	"path"
 	"path/filepath"
@@ -12,6 +13,17 @@ import (
 
 type Filesystem struct {
 	prefix string
+}
+
+func (fsys *Filesystem) String() string {
+	var s = "dirfs:"
+
+	if fsys != nil {
+		s += fmt.Sprintf("%q", fsys.prefix)
+	} else {
+		s += "-"
+	}
+	return s
 }
 
 func (fsys *Filesystem) fullname(name string) (string, error) {
