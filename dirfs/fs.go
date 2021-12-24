@@ -47,16 +47,20 @@ func (fsys *Filesystem) fullname(name string) (string, error) {
 func (fsys *Filesystem) Open(name string) (fs.File, error) {
 	if s, err := fsys.fullname(name); err != nil {
 		return nil, fs.AsPathError("open", name, err)
+	} else if f, err := os.Open(s); err != nil {
+		return nil, fs.AsPathError("open", name, err)
 	} else {
-		return os.Open(s)
+		return f, nil
 	}
 }
 
 func (fsys *Filesystem) ReadDir(dir string) ([]fs.DirEntry, error) {
 	if fullname, err := fsys.fullname(dir); err != nil {
 		return nil, fs.AsPathError("readdir", dir, err)
+	} else if de, err := os.ReadDir(fullname); err != nil {
+		return nil, fs.AsPathError("readdir", dir, err)
 	} else {
-		return os.ReadDir(fullname)
+		return de, nil
 	}
 }
 
