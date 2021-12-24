@@ -44,11 +44,31 @@ func (fsys *Filesystem) fullname(name string) (string, error) {
 	return name, nil
 }
 
+func (fsys *Filesystem) Create(name string) (fs.File, error) {
+	if s, err := fsys.fullname(name); err != nil {
+		return nil, fs.AsPathError("create", name, err)
+	} else if f, err := os.Create(s); err != nil {
+		return nil, fs.AsPathError("create", name, err)
+	} else {
+		return f, nil
+	}
+}
+
 func (fsys *Filesystem) Open(name string) (fs.File, error) {
 	if s, err := fsys.fullname(name); err != nil {
 		return nil, fs.AsPathError("open", name, err)
 	} else if f, err := os.Open(s); err != nil {
 		return nil, fs.AsPathError("open", name, err)
+	} else {
+		return f, nil
+	}
+}
+
+func (fsys *Filesystem) OpenFile(name string, flag int, perm fs.FileMode) (fs.File, error) {
+	if s, err := fsys.fullname(name); err != nil {
+		return nil, fs.AsPathError("openfile", name, err)
+	} else if f, err := os.OpenFile(s, flag, perm); err != nil {
+		return nil, fs.AsPathError("openfile", name, err)
 	} else {
 		return f, nil
 	}
