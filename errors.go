@@ -1,6 +1,7 @@
 package fs
 
 import (
+	"errors"
 	"io/fs"
 	"os"
 	"syscall"
@@ -36,4 +37,9 @@ func AsPathError(op string, path string, err error) error {
 	}
 
 	return &fs.PathError{op, path, err}
+}
+
+// IsNotImplemented tests if an error is ENOSYS
+func IsNotImplemented(err error) bool {
+	return errors.Is(err, syscall.ENOSYS)
 }
