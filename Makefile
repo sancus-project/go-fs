@@ -1,7 +1,8 @@
 .PHONY: all generate fmt build test
 
 GO ?= go
-GODOC ?= godoc
+GODOC ?= $(GO) run -v golang.org/x/tools/cmd/godoc@latest
+GODOC_PORT ?= 6060
 GOFMT ?= gofmt
 GOFMT_FLAGS = -w -l -s
 GOGENERATE_FLAGS = -v
@@ -24,4 +25,4 @@ test:
 	$(GO) test -v ./...
 
 doc:
-	$(GODOC) -http :6060
+	$(GODOC) -http :$(GODOC_PORT)
