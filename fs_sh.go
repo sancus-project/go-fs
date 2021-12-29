@@ -84,12 +84,6 @@ func ReadFile(fsys fs.FS, name string) ([]byte, error) {
 	return fs.ReadFile(fsys, name)
 }
 
-// ReadDir is a proxy function to io/fs.ReadDir(),
-// see https://pkg.go.dev/io/fs#ReadDir for details.
-func ReadDir(fsys fs.FS, name string) ([]fs.DirEntry, error) {
-	return fs.ReadDir(fsys, name)
-}
-
 // Stat is a proxy function to io/fs.Stat(),
 // see https://pkg.go.dev/io/fs#Stat for details.
 func Stat(fsys fs.FS, name string) (fs.FileInfo, error) {
